@@ -5,7 +5,7 @@ import concurrent.futures as cf
 
 
 cpu = mp.cpu_count()
-data = list(range(300000000))
+data = list(range(100))
 
 
 # size = len(data) // cpu
@@ -21,25 +21,25 @@ def search(num, data):
     mid = maxx//2
 
     while True : 
-        # print(data)
-        if num == data[mid] :
-            print("data ditemukan = " + str(data[mid]))
-            return True
-        elif len(data) == 1:
+        print(data)
+        if len(data) == 0:
             print("data tidak ditemukan")
             return False
+        elif num == data[mid] :
+            print("data ditemukan = " + str(data[mid]))
+            return True
         elif num < data[mid] : 
             data = data[minn:mid]
-            maxx = len(data)
+            maxx = len(data) - 1
             mid = maxx//2
 
         else :
-            data = data[mid + 1: maxx]
-            maxx = len(data)
+            data = data[mid + 1: maxx + 1]
+            maxx = len(data) - 1
             mid = maxx//2
 
 t1 = time.perf_counter()
-search(13,data)
+search(100,data)
 
 t2 = time.perf_counter()
 
